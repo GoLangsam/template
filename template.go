@@ -3,35 +3,36 @@
 // license that can be found in the LICENSE file.
 
 // Package template implements the interface common to the standard packages
-// "text/template" and "html/template" as type "Template".
+// `"text/template"` and `"html/template"` as type `Template`.
 //
 // Thus, it exploits the fact, that
-//   "package "html/template" has the same interface as package "text/template"
-//    but automatically secures HTML output against certain attacks."
-// as said in "go doc text/template".
+//   "package `html/template` provides the same interface as package `text/template`
+//   and should be used instead of `text/template` whenever the output is HTML
+//   as it automatically secures HTML output against certain attacks."
+// as said in `go doc text/template` and `go doc html/template`.
 //
 // All methods and all package level functions are forewarded.
 //
-// Instead of a single New(name) this package unsurprisinlgy provides
-// two constructors: template.Text(name) & template.Html(name).
+// Instead of a single `New(name)` this package unsurprisingly provides
+// two constructors: `template.Text(name)` & `template.Html(name)`.
 //
-// Note: The package level functions ParseFiles & ParseGlob became
-// ParseTextFiles / ParseHtmlFile resp. ParseTextGlob / ParseHtmlGlob.
+// Note: The package level functions `ParseFiles` & `ParseGlob` became
+// `ParseTextFiles` / `ParseHtmlFile` resp. `ParseTextGlob` / `ParseHtmlGlob`.
 //
-// Thus, the exported type "Template" represents the template used,
-// be it html or text.
+// Thus, the exported type `Template` represents the template used,
+// be it `html` or `text`.
 //
-// Also, the type FuncMap is forwarded.
+// Also the type `FuncMap` is forwarded.
 //
-// Note: Clients in need to access any other type such as ExecError (from "text/template")
-// or data types such as HTML, CSS, JS and friends as well as Error and ErrorCode (from "html/template")
+// Note: Clients in need to access any other type such as `ExecError` (from `"text/template"`)
+// or data types such as `HTML`, `CSS`, `JS` and friends as well as `Error` and `ErrorCode` (from `"html/template"`)
 // are requested to use the respective standard package directly for access to the error and data types.
 //
-// ( escape_test.go for example uses
+// Hint: `escape_test.go` for example uses
 //   import( data "html/template" )
 // and refers to
-//   data.HTML, data.CSS, data.JS etc
-// later )
+//   data.HTML, data.CSS, data.JS ...
+// later.
 package template
 
 import (
@@ -40,6 +41,11 @@ import (
 )
 
 // Template represents the template used (html or text)
+//
+// For documentation of these methods please refer to the
+// respective underlying standard package,
+// e.g. `go doc text/template Parse`
+// or `go doc html/template ExecuteTemplate`.
 type Template interface {
 	AddParseTree(name string, tree *parse.Tree) (Template, error)
 	Clone() (Template, error)
