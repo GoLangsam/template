@@ -90,11 +90,13 @@ func (t htmlTmpl) Templates() []Template {
 
 // package functions
 
+// ParseHtmlFiles wraps html/template.ParseFiles
 func ParseHtmlFiles(filenames ...string) (Template, error) {
 	tmpl, err := template.ParseFiles(filenames...)
 	return htmlTmpl{tmpl}, err
 }
 
+// ParseHtmlGlob wraps html/template.ParseGlob
 func ParseHtmlGlob(pattern string) (Template, error) {
 	tmpl, err := template.ParseGlob(pattern)
 	return htmlTmpl{tmpl}, err
