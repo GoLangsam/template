@@ -9,9 +9,9 @@ Package `template` implements the interface common to the standard packages
 
 Thus, it exploits the fact, that
 
-	  "package `html/template` provides the same interface as package `text/template`
+	  package `html/template` provides the same interface as package `text/template`
 	  and should be used instead of `text/template` whenever the output is HTML
-	  as it automatically secures HTML output against certain attacks."
+	  as it automatically secures HTML output against certain attacks.
 
 as said in `go doc text/template` and `go doc html/template`.
 
