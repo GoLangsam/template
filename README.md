@@ -1,15 +1,10 @@
-# template
+# template [![Software License](https:img.shields.io/:license-MIT-blue.svg?style=plastic)](LICENSE.md) [![Go Report Card](https:goreportcard.com/badge/github.com/GoLangsam/template?style=plastic)](https:goreportcard.com/report/github.com/GoLangsam/template) [![GoDoc](https:godoc.org/github.com/GoLangsam/template?status.svg&style=plastic)](https:godoc.org/github.com/GoLangsam/template) [![Build Status](https:travis-ci.org/GoLangsam/template.svg?branch=master&style=plastic)](https:travis-ci.org/GoLangsam/template)
 
 Use standard "text/template" &amp; "html/template" together under a common umbrella
 
-[![Software License](https:img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Go Report Card](https:goreportcard.com/badge/github.com/GoLangsam/template)](https:goreportcard.com/report/github.com/GoLangsam/template)
-[![Build Status](https:travis-ci.org/GoLangsam/template.svg?branch=master)](https:travis-ci.org/GoLangsam/template)
-[![GoDoc](https:godoc.org/github.com/GoLangsam/template?status.svg)](https:godoc.org/github.com/GoLangsam/template)
-
 ## package docu
 
-Package template implements the interface common to the standard packages
+Package `template` implements the interface common to the standard packages
 `"text/template"` and `"html/template"` as type `Template`.
 
 Thus, it exploits the fact, that
@@ -23,21 +18,27 @@ as said in `go doc text/template` and `go doc html/template`.
 All methods and all package level functions are forewarded.
 
 Instead of a single `New(name)` this package unsurprisingly provides
-two constructors: `template.Text(name)` & `template.Html(name)`.
+two constructors:
+- `template.Text(name)` &
+- `template.Html(name)`.
 
 Note: The package level functions `ParseFiles` & `ParseGlob` became
-`ParseTextFiles` / `ParseHtmlFile` resp. `ParseTextGlob` / `ParseHtmlGlob`.
+- `ParseTextFiles` / `ParseHtmlFile` resp.
+- `ParseTextGlob` / `ParseHtmlGlob`.
 
 Thus, the exported type `Template` represents the template used,
 be it `html` or `text`.
 
 Also the type `FuncMap` is forwarded.
 
-Note: Clients in need to access any other type such as `ExecError` (from `"text/template"`)
-or data types such as `HTML`, `CSS`, `JS` and friends as well as `Error` and `ErrorCode` (from `"html/template"`)
+Note: Clients in need to access any other type
+- such as `ExecError` (from `"text/template"`) or
+- data types such as `HTML`, `CSS`, `JS` and friends
+- as well as `Error` and `ErrorCode` (from `"html/template"`)
+
 are requested to use the respective standard package directly for access to the error and data types.
 
-Hint: `escape_test.go` for example uses
+For example `escape_test.go` uses
 
 	  import( data "html/template" )
 
@@ -77,4 +78,5 @@ As of now, no additional tests are provided. The author could not think of anyth
 
 Your suggestions and contributions are very welcome ;-)
 
-Deep thinking - happy coding - keep it simple :-)
+---
+Think deep - code happy - be simple - see clear :-)
