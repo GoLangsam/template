@@ -50,29 +50,40 @@ later.
 
 ## Implementation notes
 
-`template.go` defines the interface (and the type `FuncMap` and the conveniencewrapper `Must`)
-`foreward.go` provides package level function, and is simply taken from `"html/template"` as noted inside.
-
-`wrapTextTemplate.go` and `wrapHtmlTemplate.go` define respective (internal) types and foreward the methods;
-intentionally they differ as little as possible.
+- `doc.go` just documents the package (as quoted above)
+  for [`go doc github.com/GoLangsam/template`](https:godoc.org/github.com/GoLangsam/template)
+- `template.go` defines the interface type `Template`
+  (and the convenient wrapper `Must` and the ubiquous type `FuncMap`)
+- `forward.go` forwards package level functions.
+  It'is simply taken from `"html/template"` as noted [inside](https://github.com/GoLangsam/template/blob/master/forward.go).
+- `wrapTextTemplate.go` and `wrapHtmlTemplate.go` define respective (private) implementation types,
+  foreward the methods (if need) and the `Parse...` functions.
+  Intentionally they are as similar possible.
 
 ## Examples and test
 
-(Almost) all `*_test.go` files from both standard packages are used.
+***All*** `*_test.go` files from ***both*** standard packages are used! _(Except as noted below.)_
 
 Adjusted are just things such as:
+- package declarations
+  - `template` => `template_test`
+  - in order to avoid spurious bug: duplicate flag definition `debug` 
 - imports
   - `"text/template"` resp. `"html/template"` => `"github.com/GoLangsam/template"`
-- references to type Template
+- references to type `Template`
   - `*Template` => `Template`
 - constructors
   - `New` => `Text` resp. `Html`
-- the global Parse-functions
+- the global `Parse`-functions
   - `template.Parse...` => `template.ParseText...` resp. `template.ParseHtml...` 
 - data types from `"html/template"`
-  - import as `data` and use the types accordingly, e.g.
+  - imported as `data`, and types used accordingly, e.g.
   - `template.HTML` => `data.HTML` 
-- few portions are deactivated / commented, as they require internals of the underlying package 
+- few portions are deactivated / commented, as they require internals of the underlying package
+  - `css_test.go`, `html_test.go`, `js_test.go` `url_test.go` and from `"html/template"` are entirely omitted for same reason
+- misspellings: *Cincinatti* => *Cincinnati*
+  - in order to make [Go Report Card](https:goreportcard.com/report/github.com/GoLangsam/template) more happy :-)
+
 
 As of now, no additional tests are provided. The author could not think of anything reasonable yet.
 
