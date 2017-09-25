@@ -1,11 +1,15 @@
-# template [![Software License](https:img.shields.io/:license-MIT-blue.svg?style=plastic)](LICENSE.md) [![Go Report Card](https:goreportcard.com/badge/github.com/GoLangsam/template?style=plastic)](https:goreportcard.com/report/github.com/GoLangsam/template) [![GoDoc](https:godoc.org/github.com/GoLangsam/template?status.svg&style=plastic)](https:godoc.org/github.com/GoLangsam/template) [![Build Status](https:travis-ci.org/GoLangsam/template.svg?branch=master&style=plastic)](https:travis-ci.org/GoLangsam/template)
+# template
+Use both [`"text/template"`](https://godoc.org/github.com/golang/go/src/text/template) &amp; [`"html/template"`](https://godoc.org/github.com/golang/go/src/html/template) together under [a common umbrella](https://github.com/GoLangsam/template).
 
-Use standard "text/template" &amp; "html/template" together under a common umbrella
+[![Software License](https:img.shields.io/:license-MIT-blue.svg?style=plastic)](LICENSE.md) [![Go Report Card](https:goreportcard.com/badge/github.com/GoLangsam/template?style=plastic)](https:goreportcard.com/report/github.com/GoLangsam/template) [![GoDoc](https:godoc.org/github.com/GoLangsam/template?status.svg&style=plastic)](https:godoc.org/github.com/GoLangsam/template) [![Build Status](https:travis-ci.org/GoLangsam/template.svg?branch=master&style=plastic)](https:travis-ci.org/GoLangsam/template)
+
+## background
+Shall be written another day :-)
 
 ## package docu
 
-Package `template` implements the interface common to the standard packages
-`"text/template"` and `"html/template"` as type `Template`.
+Package [`template`](https://github.com/GoLangsam/template) implements the interface common to the standard packages
+[`"text/template"`](https://github.com/golang/go/tree/master/src/text/template) and [`"html/template"`](https://github.com/golang/go/tree/master/src/html/template) as type [`Template`](https://godoc.org/github.com/GoLangsam/template#Template).
 
 Thus, it exploits the fact, that
 
@@ -17,8 +21,7 @@ as said in `go doc text/template` and `go doc html/template`.
 
 All methods and all package level functions are forewarded.
 
-Instead of a single `New(name)` this package unsurprisingly provides
-two constructors:
+Instead of a single `New(name)` this package unsurprisingly provides ***two*** constructors:
 - `template.Text(name)` &
 - `template.Html(name)`.
 
