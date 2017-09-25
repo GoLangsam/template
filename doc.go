@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-Package `template` implements the interface common to the standard packages
+Package template implements the interface common to the standard packages
 `"text/template"` and `"html/template"` as type `Template`.
 
 Thus, it exploits the fact, that
