@@ -2,15 +2,17 @@
 # http://docs.travis-ci.com/user/migrating-from-legacy/
 sudo: false
 
+dist: trusty
+
 language: go
 go:
-  - tip
-  - master
+# - tip
+# - master
   - 1.9
 
 matrix:
   allow_failures:
-    - go: tip
+# - go: tip
   fast_finish: true
 
 before_install:
