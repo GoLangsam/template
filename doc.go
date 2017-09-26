@@ -21,13 +21,13 @@ two constructors:
 
 - template.Text(name) &
 
-- template.Html(name).
+- template.HTML(name).
 
 Note: The package level functions ParseFiles & ParseGlob became
 
-- ParseTextFiles / ParseHtmlFile resp.
+- ParseTextFiles / ParseHTMLfile resp.
 
-- ParseTextGlob / ParseHtmlGlob.
+- ParseTextGlob / ParseHTMLglob.
 
 Thus, the exported type Template represents the template used,
 be it html or text.

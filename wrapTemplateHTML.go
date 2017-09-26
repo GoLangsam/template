@@ -11,8 +11,8 @@ import (
 
 type htmlTmpl struct{ *template.Template }
 
-// Html returns a new "html/template" Template
-func Html(Name string) Template {
+// HTML returns a new "html/template" Template
+func HTML(Name string) Template {
 	return htmlTmpl{template.New(Name)}
 }
 
@@ -90,14 +90,14 @@ func (t htmlTmpl) Templates() []Template {
 
 // package functions
 
-// ParseHtmlFiles wraps html/template.ParseFiles
-func ParseHtmlFiles(filenames ...string) (Template, error) {
+// ParseHTMLfiles wraps html/template.ParseFiles
+func ParseHTMLfiles(filenames ...string) (Template, error) {
 	tmpl, err := template.ParseFiles(filenames...)
 	return htmlTmpl{tmpl}, err
 }
 
-// ParseHtmlGlob wraps html/template.ParseGlob
-func ParseHtmlGlob(pattern string) (Template, error) {
+// ParseHTMLglob wraps html/template.ParseGlob
+func ParseHTMLglob(pattern string) (Template, error) {
 	tmpl, err := template.ParseGlob(pattern)
 	return htmlTmpl{tmpl}, err
 }

@@ -21,13 +21,18 @@ as said in `go doc text/template` and `go doc html/template`.
 
 All methods and all package level functions are forewarded.
 
-Instead of a single `New(name)` this package unsurprisingly provides ***two*** constructors:
+Instead of a single `New(name)` this package unsurprisingly provides
+***two*** constructors:
+
 - `template.Text(name)` &
-- `template.Html(name)`.
+
+- `template.HTML(name)`.
 
 Note: The package level functions `ParseFiles` & `ParseGlob` became
-- `ParseTextFiles` / `ParseHtmlFile` resp.
-- `ParseTextGlob` / `ParseHtmlGlob`.
+
+- `ParseTextFiles` / `ParseHTMLfile` resp.
+
+- `ParseTextGlob` / `ParseHTMLglob`.
 
 Thus, the exported type `Template` represents the template used,
 be it `html` or `text`.
@@ -35,8 +40,11 @@ be it `html` or `text`.
 Also the type `FuncMap` is forwarded.
 
 Note: Clients in need to access any other type
+
 - such as `ExecError` (from `"text/template"`) or
+
 - data types such as `HTML`, `CSS`, `JS` and friends
+
 - as well as `Error` and `ErrorCode` (from `"html/template"`)
 
 are requested to use the respective standard package directly for access to the error and data types.
@@ -59,7 +67,7 @@ later.
   (and the convenient wrapper `Must` and the ubiquous type `FuncMap`)
 - `forward.go` forwards package level functions.
   It'is simply taken from `"html/template"` as noted [inside](https://github.com/GoLangsam/template/blob/master/forward.go).
-- `wrapTextTemplate.go` and `wrapHtmlTemplate.go` define respective (private) implementation types,
+- `wrapTemplateText.go` and `wrapTemplateHTML.go` define respective (private) implementation types,
   foreward the methods (if need) and the `Parse...` functions.
   Intentionally they are as similar possible.
 
@@ -76,9 +84,9 @@ Adjusted are just things such as:
 - references to type `Template`
   - `*Template` => `Template`
 - constructors
-  - `New` => `Text` resp. `Html`
+  - `New` => `Text` resp. `HTML`
 - the global `Parse`-functions
-  - `template.Parse...` => `template.ParseText...` resp. `template.ParseHtml...` 
+  - `template.Parse...` => `template.ParseText...` resp. `template.ParseHTML...` 
 - data types from `"html/template"`
   - imported as `data`, and types used accordingly, e.g.
   - `template.HTML` => `data.HTML` 
