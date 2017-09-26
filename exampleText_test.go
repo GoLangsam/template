@@ -12,7 +12,7 @@ import (
 	"github.com/GoLangsam/template"
 )
 
-func ExampleTemplate_text() {
+func ExampleText_text() {
 	// Define a template.
 	const letter = `
 Dear {{.Name}},

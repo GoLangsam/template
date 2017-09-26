@@ -14,7 +14,7 @@ import (
 
 func TestTemplateClone(t *testing.T) {
 	// https://golang.org/issue/12996
-	orig := Html("name")
+	orig := HTML("name")
 	clone, err := orig.Clone()
 	if err != nil {
 		t.Fatal(err)
@@ -126,7 +126,7 @@ type testCase struct {
 func newTestCase(t *testing.T) *testCase {
 	return &testCase{
 		t:    t,
-		root: Html("root"),
+		root: HTML("root"),
 	}
 }
 

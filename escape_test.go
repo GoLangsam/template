@@ -656,7 +656,7 @@ func TestEscape(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		tmpl := Html(test.name)
+		tmpl := HTML(test.name)
 		tmpl = Must(tmpl.Parse(test.input))
 		// Check for bug 6459: Tree field was not set in Parse.
 		/* omit
@@ -817,7 +817,7 @@ func TestEscapeSet(t *testing.T) {
 		for name, body := range test.inputs {
 			source += fmt.Sprintf("{{define %q}}%s{{end}} ", name, body)
 		}
-		tmpl, err := Html("root").Funcs(fns).Parse(source)
+		tmpl, err := HTML("root").Funcs(fns).Parse(source)
 		if err != nil {
 			t.Errorf("error parsing %q: %v", source, err)
 			continue
@@ -981,7 +981,7 @@ func TestErrors(t *testing.T) {
 
 	for _, test := range tests {
 		buf := new(bytes.Buffer)
-		tmpl, err := Html("z").Parse(test.input)
+		tmpl, err := HTML("z").Parse(test.input)
 		if err != nil {
 			t.Errorf("input=%q: unexpected parse error %s\n", test.input, err)
 			continue
@@ -1625,7 +1625,7 @@ func TestEscapeMalformedPipelines(t *testing.T) {
 	}
 	for _, test := range tests {
 		var b bytes.Buffer
-		tmpl, err := Html("test").Parse(test)
+		tmpl, err := HTML("test").Parse(test)
 		if err != nil {
 			t.Errorf("failed to parse set: %q", err)
 		}
@@ -1638,7 +1638,7 @@ func TestEscapeMalformedPipelines(t *testing.T) {
 
 func TestEscapeErrorsNotIgnorable(t *testing.T) {
 	var b bytes.Buffer
-	tmpl, _ := Html("dangerous").Parse("<a")
+	tmpl, _ := HTML("dangerous").Parse("<a")
 	err := tmpl.Execute(&b, nil)
 	if err == nil {
 		t.Errorf("Expected error")
@@ -1649,7 +1649,7 @@ func TestEscapeErrorsNotIgnorable(t *testing.T) {
 
 func TestEscapeSetErrorsNotIgnorable(t *testing.T) {
 	var b bytes.Buffer
-	tmpl, err := Html("root").Parse(`{{define "t"}}<a{{end}}`)
+	tmpl, err := HTML("root").Parse(`{{define "t"}}<a{{end}}`)
 	if err != nil {
 		t.Errorf("failed to parse set: %q", err)
 	}
@@ -1703,7 +1703,7 @@ func TestIndirectPrint(t *testing.T) {
 	b := "hello"
 	bp := &b
 	bpp := &bp
-	tmpl := Must(Html("t").Parse(`{{.}}`))
+	tmpl := Must(HTML("t").Parse(`{{.}}`))
 	var buf bytes.Buffer
 	err := tmpl.Execute(&buf, ap)
 	if err != nil {
@@ -1722,7 +1722,7 @@ func TestIndirectPrint(t *testing.T) {
 
 // This is a test for issue 3272.
 func TestEmptyTemplate(t *testing.T) {
-	page := Must(Html("page").ParseFiles(os.DevNull))
+	page := Must(HTML("page").ParseFiles(os.DevNull))
 	if err := page.ExecuteTemplate(os.Stdout, "page", "nothing"); err == nil {
 		t.Fatal("expected error")
 	}
@@ -1739,7 +1739,7 @@ func (Issue7379) SomeMethod(x int) string {
 // problem once the first is fixed, but its fix is trivial so we let that go. See
 // the discussion for issue 7379.
 func TestPipeToMethodIsEscaped(t *testing.T) {
-	tmpl := Must(Html("x").Parse("<html>{{0 | .SomeMethod}}</html>\n"))
+	tmpl := Must(HTML("x").Parse("<html>{{0 | .SomeMethod}}</html>\n"))
 	tryExec := func() string {
 		defer func() {
 			panicValue := recover()
@@ -1764,7 +1764,7 @@ func TestPipeToMethodIsEscaped(t *testing.T) {
 // template, that is, a template that had been named but not given any content.
 // This is issue #10204.
 func TestErrorOnUndefined(t *testing.T) {
-	tmpl := Html("undefined")
+	tmpl := HTML("undefined")
 
 	err := tmpl.Execute(nil, nil)
 	if err == nil {
@@ -1776,7 +1776,7 @@ func TestErrorOnUndefined(t *testing.T) {
 }
 
 func BenchmarkEscapedExecute(b *testing.B) {
-	tmpl := Must(Html("t").Parse(`<a onclick="alert('{{.}}')">{{.}}</a>`))
+	tmpl := Must(HTML("t").Parse(`<a onclick="alert('{{.}}')">{{.}}</a>`))
 	var buf bytes.Buffer
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

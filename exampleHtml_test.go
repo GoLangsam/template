@@ -14,7 +14,7 @@ import (
 	"github.com/GoLangsam/template"
 )
 
-func ExampleHtml() {
+func ExampleHTML() {
 	const tpl = `
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,7 @@ func ExampleHtml() {
 			log.Fatal(err)
 		}
 	}
-	t, err := template.Html("webpage").Parse(tpl)
+	t, err := template.HTML("webpage").Parse(tpl)
 	check(err)
 
 	data := struct {
@@ -84,13 +84,13 @@ func ExampleHtml() {
 
 }
 
-func ExampleHtml_autoescaping() {
+func ExampleHTML_autoescaping() {
 	check := func(err error) {
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
-	t, err := template.Html("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
+	t, err := template.HTML("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
 	check(err)
 	err = t.ExecuteTemplate(os.Stdout, "T", "<script>alert('you have been pwned')</script>")
 	check(err)
@@ -98,7 +98,7 @@ func ExampleHtml_autoescaping() {
 	// Hello, &lt;script&gt;alert(&#39;you have been pwned&#39;)&lt;/script&gt;!
 }
 
-func ExampleHtml_escape() {
+func ExampleHTML_escape() {
 	const s = `"Fran & Freddie's Diner" <tasty@example.com>`
 	v := []interface{}{`"Fran & Freddie's Diner"`, ' ', `<tasty@example.com>`}
 
@@ -127,7 +127,7 @@ func ExampleHtml_escape() {
 
 // The following example is duplicated in text/template; keep them in sync.
 
-func ExampleHtml_block() {
+func ExampleHTML_block() {
 	const (
 		master  = `Names:{{block "list" .}}{{"\n"}}{{range .}}{{println "-" .}}{{end}}{{end}}`
 		overlay = `{{define "list"}} {{join . ", "}}{{end}} `
@@ -136,7 +136,7 @@ func ExampleHtml_block() {
 		funcs     = template.FuncMap{"join": strings.Join}
 		guardians = []string{"Gamora", "Groot", "Nebula", "Rocket", "Star-Lord"}
 	)
-	masterTmpl, err := template.Html("master").Funcs(funcs).Parse(master)
+	masterTmpl, err := template.HTML("master").Funcs(funcs).Parse(master)
 	if err != nil {
 		log.Fatal(err)
 	}

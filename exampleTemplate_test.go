@@ -14,6 +14,69 @@ import (
 	"github.com/GoLangsam/template"
 )
 
+func ExampleTemplate_text() {
+	// Define a template.
+	const letter = `
+Dear {{.Name}},
+{{if .Attended}}
+It was a pleasure to see you at the wedding.
+{{- else}}
+It is a shame you couldn't make it to the wedding.
+{{- end}}
+{{with .Gift -}}
+Thank you for the lovely {{.}}.
+{{end}}
+Best wishes,
+Josie
+`
+
+	// Prepare some data to insert into the template.
+	type Recipient struct {
+		Name, Gift string
+		Attended   bool
+	}
+	var recipients = []Recipient{
+		{"Aunt Mildred", "bone china tea set", true},
+		{"Uncle John", "moleskin pants", false},
+		{"Cousin Rodney", "", false},
+	}
+
+	// Create a new template and parse the letter into it.
+	t := template.Must(template.Text("letter").Parse(letter))
+
+	// Execute the template for each recipient.
+	for _, r := range recipients {
+		err := t.Execute(os.Stdout, r)
+		if err != nil {
+			log.Println("executing template:", err)
+		}
+	}
+
+	// Output:
+	// Dear Aunt Mildred,
+	//
+	// It was a pleasure to see you at the wedding.
+	// Thank you for the lovely bone china tea set.
+	//
+	// Best wishes,
+	// Josie
+	//
+	// Dear Uncle John,
+	//
+	// It is a shame you couldn't make it to the wedding.
+	// Thank you for the lovely moleskin pants.
+	//
+	// Best wishes,
+	// Josie
+	//
+	// Dear Cousin Rodney,
+	//
+	// It is a shame you couldn't make it to the wedding.
+	//
+	// Best wishes,
+	// Josie
+}
+
 func ExampleTemplate_html() {
 	const tpl = `
 <!DOCTYPE html>
@@ -32,7 +95,7 @@ func ExampleTemplate_html() {
 			log.Fatal(err)
 		}
 	}
-	t, err := template.Html("webpage").Parse(tpl)
+	t, err := template.HTML("webpage").Parse(tpl)
 	check(err)
 
 	data := struct {
@@ -90,7 +153,7 @@ func ExampleTemplate_autoescaping() {
 			log.Fatal(err)
 		}
 	}
-	t, err := template.Html("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
+	t, err := template.HTML("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
 	check(err)
 	err = t.ExecuteTemplate(os.Stdout, "T", "<script>alert('you have been pwned')</script>")
 	check(err)
@@ -136,7 +199,7 @@ func ExampleTemplate_block() {
 		funcs     = template.FuncMap{"join": strings.Join}
 		guardians = []string{"Gamora", "Groot", "Nebula", "Rocket", "Star-Lord"}
 	)
-	masterTmpl, err := template.Html("master").Funcs(funcs).Parse(master)
+	masterTmpl, err := template.HTML("master").Funcs(funcs).Parse(master)
 	if err != nil {
 		log.Fatal(err)
 	}

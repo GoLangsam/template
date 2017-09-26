@@ -55,7 +55,7 @@ func BenchmarkTemplateSpecialTags(b *testing.B) {
 
 	var buf bytes.Buffer
 	for i := 0; i < b.N; i++ {
-		tmpl := Must(Html("foo").Parse(html))
+		tmpl := Must(HTML("foo").Parse(html))
 		if err := tmpl.Execute(&buf, r); err != nil {
 			b.Fatal(err)
 		}

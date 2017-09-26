@@ -245,7 +245,7 @@ func TestTypedContent(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		tmpl := Must(Html("x").Parse(test.input))
+		tmpl := Must(HTML("x").Parse(test.input))
 		pre := strings.Index(test.input, "{{.}}")
 		post := len(test.input) - (pre + 5)
 		var b bytes.Buffer
@@ -283,7 +283,7 @@ func (s *errorer) Error() string {
 func TestStringer(t *testing.T) {
 	s := &stringer{3}
 	b := new(bytes.Buffer)
-	tmpl := Must(Html("x").Parse("{{.}}"))
+	tmpl := Must(HTML("x").Parse("{{.}}"))
 	if err := tmpl.Execute(b, s); err != nil {
 		t.Fatal(err)
 	}
@@ -304,7 +304,7 @@ func TestStringer(t *testing.T) {
 
 // https://golang.org/issue/5982
 func TestEscapingNilNonemptyInterfaces(t *testing.T) {
-	tmpl := Must(Html("x").Parse("{{.E}}"))
+	tmpl := Must(HTML("x").Parse("{{.E}}"))
 
 	got := new(bytes.Buffer)
 	testData := struct{ E error }{} // any non-empty interface here will do; error is just ready at hand

@@ -63,7 +63,7 @@ func ExampleTemplate_glob() {
 	// Here starts the example proper.
 	// T0.tmpl is the first name matched, so it becomes the starting template,
 	// the value returned by ParseGlob.
-	tmpl := template.Must(template.ParseHtmlGlob(pattern))
+	tmpl := template.Must(template.ParseHTMLglob(pattern))
 
 	err := tmpl.Execute(os.Stdout, nil)
 	if err != nil {
@@ -101,7 +101,7 @@ func ExampleTemplate_parsefiles() {
 		filepath.Join(dir1, "T1.tmpl"),
 		filepath.Join(dir2, "T2.tmpl"),
 	}
-	tmpl := template.Must(template.ParseHtmlFiles(paths...))
+	tmpl := template.Must(template.ParseHTMLfiles(paths...))
 
 	err := tmpl.Execute(os.Stdout, nil)
 	if err != nil {
@@ -134,7 +134,7 @@ func ExampleTemplate_helpers() {
 
 	// Here starts the example proper.
 	// Load the helpers.
-	templates := template.Must(template.ParseHtmlGlob(pattern))
+	templates := template.Must(template.ParseHTMLglob(pattern))
 	// Add one driver template to the bunch; we do this with an explicit template definition.
 	_, err := templates.Parse("{{define `driver1`}}Driver 1 calls T1: ({{template `T1`}})\n{{end}}")
 	if err != nil {
@@ -182,7 +182,7 @@ func ExampleTemplate_share() {
 
 	// Here starts the example proper.
 	// Load the drivers.
-	drivers := template.Must(template.Html("T0.tmpl").ParseGlob(pattern))
+	drivers := template.Must(template.HTML("T0.tmpl").ParseGlob(pattern))
 
 	// We must define an implementation of the T2 template. First we clone
 	// the drivers, then add a definition of T2 to the template name space.
