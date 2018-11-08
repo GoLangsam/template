@@ -2,6 +2,7 @@
 Use both [`"text/template"`](https://godoc.org/github.com/golang/go/src/text/template) &amp; [`"html/template"`](https://godoc.org/github.com/golang/go/src/html/template) together under [a common umbrella](https://github.com/GoLangsam/template).
 
 [![Software License](https:img.shields.io/:license-MIT-blue.svg?style=plastic)](LICENSE.md) [![Go Report Card](https:goreportcard.com/badge/github.com/GoLangsam/template?style=plastic)](https:goreportcard.com/report/github.com/GoLangsam/template) [![GoDoc](https:godoc.org/github.com/GoLangsam/template?status.svg&style=plastic)](https:godoc.org/github.com/GoLangsam/template) [![Build Status](https:travis-ci.org/GoLangsam/template.svg?branch=master&style=plastic)](https:travis-ci.org/GoLangsam/template)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGoLangsam%2Ftemplate.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGoLangsam%2Ftemplate?ref=badge_shield)
 
 ## background
 Shall be written another day :-)
@@ -106,3 +107,6 @@ Think deep - code happy - be simple - see clear :-)
 Hey dude! Help me out for a couple of :beers:!
 
 [![Beerpay](https://beerpay.io/GoLangsam/template/badge.svg?style=beer-square)](https://beerpay.io/GoLangsam/template)  [![Beerpay](https://beerpay.io/GoLangsam/template/make-wish.svg?style=flat-square)](https://beerpay.io/GoLangsam/template?focus=wish)
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGoLangsam%2Ftemplate.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGoLangsam%2Ftemplate?ref=badge_large)
