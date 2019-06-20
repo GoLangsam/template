@@ -98,10 +98,12 @@ Adjusted are just things such as:
 
 As of now, no additional tests are provided. The author could not think of anything reasonable yet.
 
-Your suggestions and contributions are very welcome ;-)
+Your suggestions, remarks, questions and/or contributions are welcome ;-)
 
 ---
-Think deep - code happy - be simple - see clear :-)
+## Think deep - code happy - be simple - see clear :-)
+
+---
 ## Support on Beerpay
 Hey dude! Help me out for a couple of :beers:!
 
